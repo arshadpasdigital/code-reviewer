@@ -6,26 +6,17 @@ import morgan from "morgan";
 import { serve } from "inngest/express";
 import { inngest } from '../inngest';
 import {functions} from '../inngest/functions/index'
-import { App, createNodeMiddleware } from 'octokit';
-
-// const githubApp = new App({
-//   appId: process.env.APP_ID,
-//   privateKey: process.env.PRIVATE_KEY,
-//   webhooks: {
-//     secret: process.env.WEBHOOK_SECRET,
-//   },
-// });
-
+import { createNodeMiddleware } from "@octokit/webhooks";
+import { githubApp } from './lib/github';
+import "./config/webhook";
 
 const app = express();
+const webhookMiddleware = createNodeMiddleware(githubApp.webhooks, { path: "/webhooks/github" });
 
-// const middleware = createNodeMiddleware(githubApp.webhooks, { 
-//   path: '/api/webhook' 
-// });
-// app.use(middleware);
 
 app.use(cors());
 app.use(helmet());
+app.use(webhookMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 app.use(morgan("combined"));

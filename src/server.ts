@@ -1,12 +1,10 @@
-import "dotenv/config";
-
 import { type Server, createServer } from "node:http";
-
 import app from "./app.ts";
+import { env } from "./config/env.ts";
 
 async function init() {
   try {
-    const port = Number(process.env.PORT ?? 3000);
+    const port = Number(env.PORT ?? 3000);
     const shutdownTimeout = 10_000;
 
     const server: Server | undefined = createServer(app);

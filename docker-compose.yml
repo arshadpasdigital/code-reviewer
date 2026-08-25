@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: review_rabbit
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: review_rabbit
+    ports:
+      - "5432:5432"
+    volumes:
+      - review-rabbit-db:/var/lib/postgresql/data
+
+volumes:
+  review-rabbit-db:
