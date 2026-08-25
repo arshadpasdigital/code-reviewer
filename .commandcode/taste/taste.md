@@ -1,0 +1,4 @@
+- Prefers an MVP-first approach, with a focused initial feature set and clear extension points for adding capabilities later. Confidence: 0.9
+- Values project documentation that gives an agent enough architectural and workflow context to understand and operate the system, including integrations, asynchronous jobs, and the end-to-end PR review flow. Confidence: 0.9
+- Prefers creating the required Markdown/project-guidance documents before starting implementation, especially to prepare the project for AI-assisted development. Confidence: 0.95
+- Prefers separating the web app definition from the server entrypoint, with a health endpoint and robust lifecycle handling including graceful shutdown, uncaught exceptions, and unhandled promise rejections. Confidence: 0.95
